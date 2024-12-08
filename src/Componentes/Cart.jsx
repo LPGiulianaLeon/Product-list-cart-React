@@ -9,7 +9,7 @@ export default function Cart({ cart, removeFromCart, onConfirm }) {
             <h2 className="cart-title">Your Cart ({cart.length})</h2>
             {cart.length === 0 ? (
               <>
-                <img src="public/img/illustration-empty-cart.svg" />
+                <img src="/img/illustration-empty-cart.svg" />
                 <p>Your added items will appear here</p>
               </>
             ) : (

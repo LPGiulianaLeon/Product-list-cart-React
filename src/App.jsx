@@ -36,6 +36,23 @@ function App() {
     setCart([]); 
   }
 
+  function updateCartQuantity(id, quantity) {
+    setCart((prevCart) => {
+      if (quantity === 0) {
+        // Eliminar el producto del carrito si la cantidad llega a 0
+        return prevCart.filter((item) => item.id !== id);
+      } else {
+        // Actualizar la cantidad del producto
+        return prevCart.map((item) =>
+          item.id === id ? { ...item, quantity } : item
+        );
+      }
+    });
+  }
+
+
+
+
   const cartTotal = cart.reduce(
     (total, item) => total + item.quantity * item.price,
     0
@@ -55,11 +72,16 @@ function App() {
                 dessert={dessert}
                 setCart={setCart}
                 addToCart={addToCart}
+                updateCartQuantity={updateCartQuantity}
               />
             ))}
           </div>
         </div>
-        <Cart cart={cart} removeFromCart={removeFromCart} onConfirm={handleConfirmOrder} />
+        <Cart 
+        cart={cart} 
+        removeFromCart={removeFromCart} 
+        updateCartQuantity={updateCartQuantity}
+        onConfirm={handleConfirmOrder} />
       </div>
 
       {/* Modal de confirmación */}

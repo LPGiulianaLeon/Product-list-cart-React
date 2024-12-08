@@ -2,8 +2,12 @@
 import React, { useState } from 'react';
 
 export default function Dessert({ dessert, addToCart, updateCartQuantity }) {
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(dessert.quantity || 0);
 
+    React.useEffect(() => {
+        setQuantity(dessert.quantity || 0);
+      }, [dessert.quantity]);
+    
     const handleIncrement = () => {
       const newQuantity = quantity + 1;
       setQuantity(newQuantity);
@@ -41,10 +45,10 @@ export default function Dessert({ dessert, addToCart, updateCartQuantity }) {
                         Add to Cart
                     </button>
                 ) : (
-                    <div className="quantity-control">
+                    <div className="quantity-control styled-control">
                         <button 
                             type="button" 
-                            className="decrement-btn"
+                            className="decrement-btn styled-btn"
                             onClick={handleDecrement}
                         >
                             −
@@ -52,7 +56,7 @@ export default function Dessert({ dessert, addToCart, updateCartQuantity }) {
                         <span className="quantity-display">{quantity}</span>
                         <button 
                             type="button" 
-                            className="increment-btn"
+                            className="increment-btn styled-btn"
                             onClick={handleIncrement}
                         >
                             +

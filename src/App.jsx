@@ -23,6 +23,13 @@ function App() {
     }
   }
 
+  function resetCart() {
+    // Limpia las cantidades en el carrito y el estado general
+    const resetData = data.map((dessert) => ({ ...dessert, quantity: 0 }));
+    setData(resetData); // Restablece los datos iniciales
+    setCart([]); // Limpia el carrito
+  }
+
   function removeFromCart(id) {
     setCart((prevCart) => prevCart.filter((dessert) => dessert.id !== id));
   }
@@ -90,6 +97,7 @@ function App() {
         onClose={handleCloseModal}
         cart={cart}
         total={cartTotal}
+        resetCart={resetCart}
       />
     </>
   );

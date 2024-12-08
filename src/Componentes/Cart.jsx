@@ -44,8 +44,8 @@ export default function Cart({ cart, removeFromCart, onConfirm }) {
                 ))}
               </ul>
               <h4 className="cart-total">Order Total: ${cartTotal()}</h4>
-              <p className="cart-delivery">This is a carbon-neutral delivery</p>
-              <button className="btn cart-btn" onClick={onConfirm}>
+              <p className="cart-delivery"><img src="/img/icon-carbon-neutral.svg" />  This is a carbon-neutral delivery</p>
+              <button className="cart-btn" onClick={onConfirm}>
                 Confirm Order
               </button>
             </>

@@ -1,30 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Modal({ isOpen, onClose, cart, total }) {
+export default function Modal({ isOpen, onClose, cart, total, resetCart }) {
   if (!isOpen) return null;
+
+  const handleNewOrder = () => {
+    resetCart(); 
+    onClose(); 
+  };
 
   return (
     <Overlay>
       <ModalContainer>
-        <h2>Order Confirmed</h2>
-        <p>We hope you enjoy your food!</p>
+        <Header>
+          <img src="/img/icon-order-confirmed.svg"/>
+          <h1>Order Confirmed</h1>
+          <p>We hope you enjoy your food!</p>
+        </Header>
+
         <ul>
           {cart.map((item) => (
             <li key={item.id} className="modal-item">
               <img src={item.image.desktop} alt={item.name} />
-              <div>
-                <p>{item.name}</p>
+              <div className="item-details">
+                <p className="item-title">{item.name}</p>
                 <p>
-                  {item.quantity} x ${item.price.toFixed(2)}
+                  <span className="item-quantity">{item.quantity} x</span> @${item.price.toFixed(2)}
                 </p>
               </div>
-              <p>${(item.quantity * item.price).toFixed(2)}</p>
+              <p className="item-total">${(item.quantity * item.price).toFixed(2)}</p>
             </li>
           ))}
         </ul>
         <h3>Order Total: ${total.toFixed(2)}</h3>
-        <button onClick={onClose} className="btn">
+        <button onClick={handleNewOrder} className="btn">
           Start New Order
         </button>
       </ModalContainer>
@@ -47,7 +56,7 @@ const Overlay = styled.div`
 
 const ModalContainer = styled.div`
   background-color: #fff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   width: 400px;
   text-align: center;
@@ -63,6 +72,31 @@ const ModalContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    background-color: #fbf1ee;
+    padding: 10px 20px;
+  }
+  
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+
+  .item-title {
+    font-weight: bold;
+    margin: 0;
+   
+  }
+
+  .item-quantity {
+    color: red; 
+    font-weight: bold;
+  }
+
+  .item-total {
+    font-weight: bold;
+    text-align: right;
   }
 
   img {
@@ -72,11 +106,44 @@ const ModalContainer = styled.div`
   }
 
   .btn {
-    background-color: #ff6600;
+    background-color: #d44f2a;
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
+    width: 100%;
+  }
+  
+
+`;
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start; 
+  margin-bottom: 20px;
+
+  img {
+    width: 40px; 
+    height: 40px;
+    margin-right: 10px; 
+  }
+
+  div {
+    text-align: left; 
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+
+  p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
   }
 `;

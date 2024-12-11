@@ -1,6 +1,6 @@
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Red Hat Text', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #fdfaf4;
@@ -53,7 +53,6 @@ body {
   height: auto;
   display: block;
   border-radius: 10px;
-  /*object-fit: cover;*/
 }
 
 .card-image-container {
@@ -74,8 +73,12 @@ body {
 }
 
 .card-category {
-  color: #a7958f;
+  color: #706464;
   font-size: 15px;
+}
+
+.text-cart-empty {
+  color:#706464;
   font-weight: bold;
 }
 
@@ -169,30 +172,38 @@ body {
 
 .right-container {
   flex: 1;
-  
 }
 
 .cart-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   background: white;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5px 30px 20px 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 
 .cart-title {
+ 
   color: #b35738;
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 15px;
+  text-align: left;
+  width: 100%;
   
 }
 
-
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 20px;
+}
 
 
 .cart-list {
@@ -206,7 +217,8 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  border-bottom: 1px solid gray;
+  border-bottom: 0.1px solid #ebe6e6;
+  padding: 10px;
 }
 
 .cart-item-details {
@@ -244,31 +256,65 @@ body {
 }
 
 .cart-total {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 15px;
-  justify-content: left;
+  
+}
+
+.cart-total-label {
+  font-size: 16px;
+  font-weight: lighter;
+  color: black;
+  margin-left: 10px;
+}
+
+.cart-total-price {
+  font-size: 25px;
 }
 
 .cart-delivery {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 0.9rem;
-  color: #6c757d;
+  padding: 15px;
+  background-color: #f9f4f4;
   margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+strong {
+  white-space: normal; /* Permite que el texto conserve los espacios */
 }
 
 .cart-remove-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: none;
-  border: 1.5px solid gray;
-  height: 20px;
-  width: 20px;
+  color: gray;
+  border: 2px solid rgb(197, 187, 187);
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   text-align: center;
-  
-  line-height: 2px;
+  padding: 0;
+  margin-top: 15px;
   cursor: pointer;
+}
+
+.cart-remove-btn:hover {
+
+  border-color: black;
+}
+
+.cart-remove-btn:hover .remove-icon {
+  filter: invert(1); 
+  fill: black; 
 }
 
 .cart-btn {

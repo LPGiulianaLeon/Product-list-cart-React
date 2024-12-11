@@ -32,7 +32,10 @@ export default function Modal({ isOpen, onClose, cart, total, resetCart }) {
             </li>
           ))}
         </ul>
-        <h3>Order Total: ${total.toFixed(2)}</h3>
+        <p className="modal-order-total">
+          <span className="label-order-total">Order Total:</span>
+          <span className="price-oreder-total">${total.toFixed(2)}</span>
+        </p>
         <button onClick={handleNewOrder} className="btn">
           Start New Order
         </button>
@@ -58,13 +61,20 @@ const ModalContainer = styled.div`
   background-color: #fff;
   padding: 30px;
   border-radius: 10px;
-  width: 400px;
-  text-align: center;
+  width: 450px;
+  
+  
+  
 
   ul {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     list-style: none;
     padding: 0;
     margin: 20px 0;
+    background-color: #f9f4f4;
+    border-radius: 10px;
   }
 
   .modal-item {
@@ -72,31 +82,51 @@ const ModalContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    background-color: #fbf1ee;
+    border-bottom: 0.5px solid #ebe6e6;
     padding: 10px 20px;
+    
   }
   
   .item-details {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    align-items: flex-start;
     margin-left: 10px;
+    width: 100%;
   }
 
   .item-title {
     font-weight: bold;
     margin: 0;
+    width: 100%;
    
   }
 
   .item-quantity {
-    color: red; 
+    color: #d44f2a; 
     font-weight: bold;
   }
 
   .item-total {
     font-weight: bold;
     text-align: right;
+    width: auto;
+    margin-left: 10px;
+  }
+
+  .modal-order-total{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .label-order-total {
+    margin-left: 25px;
+  }
+
+  .price-oreder-total {
+    font-weight: bold;
+    font-size: 25px;
+    margin-right: 10px;
   }
 
   img {
@@ -108,7 +138,7 @@ const ModalContainer = styled.div`
   .btn {
     background-color: #d44f2a;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border: none;
     border-radius: 20px;
     cursor: pointer;

@@ -24,14 +24,19 @@ function App() {
   }
 
   function resetCart() {
-    // Limpia las cantidades en el carrito y el estado general
     const resetData = data.map((dessert) => ({ ...dessert, quantity: 0 }));
-    setData(resetData); // Restablece los datos iniciales
-    setCart([]); // Limpia el carrito
+    setData(resetData); 
+    setCart([]); 
   }
 
   function removeFromCart(id) {
     setCart((prevCart) => prevCart.filter((dessert) => dessert.id !== id));
+
+    setData((prevData) =>
+      prevData.map((dessert) =>
+        dessert.id === id ? { ...dessert, quantity: 0 } : dessert
+      )
+    );
   }
 
   function handleConfirmOrder() {
@@ -46,10 +51,10 @@ function App() {
   function updateCartQuantity(id, quantity) {
     setCart((prevCart) => {
       if (quantity === 0) {
-        // Eliminar el producto del carrito si la cantidad llega a 0
+
         return prevCart.filter((item) => item.id !== id);
       } else {
-        // Actualizar la cantidad del producto
+
         return prevCart.map((item) =>
           item.id === id ? { ...item, quantity } : item
         );
